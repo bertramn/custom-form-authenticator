@@ -1,0 +1,42 @@
+# Editor Trash #
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.externalToolBuilders
+.metadata
+.checkstyle
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+logs/*
+
+# Maven release trash
+release.properties
+pom.xml.*
+
+# Binaries  #
+*.class
+
+# Package Files #
+*.jar
+!maven-wrapper.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# any temp storage #
+tmp/
+temp/
+target/
+.m2/
+
+.DS_Store
+*.ldb
+*.url
