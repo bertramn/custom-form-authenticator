@@ -1,6 +1,10 @@
 # Example Custom Form Authenticator
 
-### Build and Install Module
+## Install as EJB
+
+Module will fail when installed as EJB
+
+### Build and Install
 
 ```sh
 mvn clean package
@@ -198,3 +202,28 @@ cp target/custom-form-authenticator.jar $JBOSS_HOME/standalone/deployments/.
         at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
         at java.lang.Thread.run(Thread.java:748)
 ```
+
+
+## Install As Module
+
+When installed as a module, the adapter works.
+
+### Build and Install
+
+```bash
+# build me
+mvn clean package
+
+# install module
+mkdir -p "${JBOSS_HOME}/modules/com/github/bertramn/sso/authenticators/browser/custom-form-authenticator/main"
+cp src/main/resources/module.xml "${JBOSS_HOME}/modules/com/github/bertramn/sso/authenticators/browser/custom-form-authenticator/main"
+cp target/custom-form-authenticator.jar "${JBOSS_HOME}/modules/com/github/bertramn/sso/authenticators/browser/custom-form-authenticator/main/."
+
+# configure provider
+${JBOSS_HOME}/bin/jbosscli.sh -c '/subsystem=keycloak-server:list-add(name=providers,value=module:com.github.bertramn.sso.authenticators.browser.custom-form-authenticator)'
+
+# start server
+$(JBOSS_HOME)/bin/standalone.sh
+```
+
+Follow [form setup](https://github.com/bertramn/custom-form-authenticator#configure-the-form-authenticator) above.
